@@ -1,4 +1,3 @@
-
 package CoreProgramming;
 import java.util.Random;
 import java.util.Scanner;
@@ -27,12 +26,47 @@ public class NumberGuessingGame {
         return new int[]{min, max};
     }
 
+    // Function to take integer input from user
+    public static int getInput(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        while (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter an integer.");
+            scanner.next();
+            System.out.print(prompt);
+        }
+        return scanner.nextInt();
+    }
+
+    // Function to find maximum of three numbers
+    public static int findMaximum(int a, int b, int c) {
+        int max = a;
+        if (b > max) {
+            max = b;
+        }
+        if (c > max) {
+            max = c;
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        // Maximum of Three Numbers Feature
+        System.out.println("Find the maximum of three numbers:");
+        int num1 = getInput(scanner, "Enter first integer: ");
+        int num2 = getInput(scanner, "Enter second integer: ");
+        int num3 = getInput(scanner, "Enter third integer: ");
+        int maximum = findMaximum(num1, num2, num3);
+        System.out.println("The maximum of the three numbers is: " + maximum);
+
+        // ...existing number guessing game code...
         int min = 1, max = 100;
         boolean found = false;
 
-        System.out.println("Think of a number between 1 and 100. The computer will try to guess it!");
+        System.out.println("\nThink of a number between 1 and 100. The computer will try to guess it!");
+
+        scanner.nextLine(); // Clear buffer after integer input
 
         while (!found && min <= max) {
             int guess = generateGuess(min, max);
